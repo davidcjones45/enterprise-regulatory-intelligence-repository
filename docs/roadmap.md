@@ -1,6 +1,6 @@
 # Implementation Roadmap
 
-## Release 0.1 — Repository foundation
+## Release 0.1 - Repository foundation
 
 - JSON Schemas.
 - Validator CLI.
@@ -9,15 +9,22 @@
 - Reconstruction query.
 - Unit tests and CI.
 
-## Release 0.2 — Source ingestion
+## Release 0.2 - Source registry
 
-- Source manifest.
-- Download and integrity verification.
-- Change detection.
+- Queryable federal and state source catalog.
+- Legal status and lifecycle history.
+- Binding-effect and review-level classifications.
+- Representative source-verified public records.
+- Command-line jurisdiction and status filters.
+
+## Release 0.2.1 - Source ingestion automation
+
+- Authoritative document download and integrity verification.
+- Change detection against previously retrieved content.
 - Extraction work queue.
-- Provenance for machine-generated candidates.
+- Provenance for machine-generated obligation candidates.
 
-## Release 0.3 — Applicability rules
+## Release 0.3 - Applicability rules
 
 - Product and system inventory schema.
 - Jurisdiction and role predicates.
@@ -25,7 +32,7 @@
 - Human approval workflow.
 - Regression tests for applicability decisions.
 
-## Release 0.4 — API and user interface
+## Release 0.4 - API and user interface
 
 - Read-only query API.
 - Review queue.
@@ -33,7 +40,7 @@
 - Evidence sufficiency dashboard.
 - Export package.
 
-## Release 0.5 — Integration adapters
+## Release 0.5 - Integration adapters
 
 - Generic webhook/event interface.
 - GRC import/export contract.

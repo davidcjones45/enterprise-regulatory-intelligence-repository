@@ -17,6 +17,7 @@ The reference implementation answers five core questions:
 ## Current capabilities
 
 - JSON Schema validation for sources, obligations, applicability assessments, controls, and evidence.
+- A queryable federal and state regulatory source catalog with lifecycle and review metadata.
 - A Python command-line validator.
 - A SQLite evidence ledger with append-only event semantics.
 - Valid and invalid example records.
@@ -29,6 +30,7 @@ The reference implementation answers five core questions:
 ```text
 src/erir/                 Python package and CLI
 schemas/                  JSON Schemas
+catalog/sources/          Source-verified public regulatory metadata
 examples/valid/           Valid worked examples
 examples/invalid/         Deliberately invalid examples
 sql/                      SQLite schema and reconstruction query
@@ -52,6 +54,9 @@ Windows PowerShell:
 pip install -e ".[dev]"
 pytest
 erir validate examples/valid
+erir validate catalog/sources
+erir sources list
+erir sources list --jurisdiction Colorado --status effective
 erir validate examples/invalid
 erir init-ledger erir.db
 erir load-examples erir.db examples/valid
@@ -65,7 +70,19 @@ source .venv/bin/activate
 pip install -e ".[dev]"
 pytest
 erir validate examples/valid
+erir sources list --binding-effect nonbinding
 ```
+
+## Source catalog
+
+Release 0.2 includes a small representative catalog covering a federal voluntary framework
+and enacted laws in Colorado and Texas. The catalog is intentionally limited: it demonstrates
+the ingestion, lifecycle, review, validation, and query workflow without claiming comprehensive
+coverage.
+
+`source_verified` means identifying metadata was checked against the linked authoritative
+publication. It does not mean the record received legal review or that an organization is in
+scope. Applicability and normalized obligations remain separate records and review decisions.
 
 ## Design principles
 

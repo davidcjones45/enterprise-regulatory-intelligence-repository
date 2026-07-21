@@ -6,6 +6,7 @@ import json
 
 from .ledger import connect, initialize, load_records, reconstruct_obligation
 from .models import load_json
+from .source_catalog import filter_sources, format_source_table, load_sources
 from .validator import RepositoryValidator
 
 
@@ -51,6 +52,21 @@ def cmd_reconstruct(args: argparse.Namespace) -> int:
     return 0 if rows else 1
 
 
+def cmd_sources_list(args: argparse.Namespace) -> int:
+    sources = filter_sources(
+        load_sources(Path(args.directory)),
+        jurisdiction=args.jurisdiction,
+        status=args.status,
+        source_type=args.source_type,
+        binding_effect=args.binding_effect,
+    )
+    if args.format == "json":
+        print(json.dumps(sources, indent=2))
+    else:
+        print(format_source_table(sources))
+    return 0
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="erir",
@@ -75,6 +91,21 @@ def build_parser() -> argparse.ArgumentParser:
     reconstruct.add_argument("database")
     reconstruct.add_argument("obligation_id")
     reconstruct.set_defaults(func=cmd_reconstruct)
+
+    sources = subparsers.add_parser("sources", help="Query the regulatory source catalog")
+    source_commands = sources.add_subparsers(dest="sources_command", required=True)
+    sources_list = source_commands.add_parser("list", help="List cataloged regulatory sources")
+    sources_list.add_argument(
+        "--directory",
+        default=str(repository_root() / "catalog" / "sources"),
+        help="Source catalog directory",
+    )
+    sources_list.add_argument("--jurisdiction", help="Country code, subdivision code, or name")
+    sources_list.add_argument("--status", help="Current legal status")
+    sources_list.add_argument("--source-type", help="Regulatory source type")
+    sources_list.add_argument("--binding-effect", help="Binding effect classification")
+    sources_list.add_argument("--format", choices=("table", "json"), default="table")
+    sources_list.set_defaults(func=cmd_sources_list)
 
     return parser
 

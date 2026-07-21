@@ -11,6 +11,16 @@
 | Evidence | Artifact or observation supporting control operation |
 | Ledger Event | Immutable record of what was observed, by whom, and when |
 
+## Regulatory source metadata
+
+Each cataloged source records its issuing authority, instrument identifier, jurisdiction,
+binding effect, current legal status, lifecycle history, effective and compliance dates,
+review level, topical tags, and relationships to amending or implementing instruments.
+
+The current status is a snapshot. `status_history` preserves dated transitions such as
+introduction, enactment, amendment, and effectiveness without incorrectly treating an amended
+but still effective law as merely "amended."
+
 ## Core relationships
 
 ```text

@@ -1,0 +1,55 @@
+{
+  "record_type": "regulatory_source",
+  "id": "SRC-US-CO-SB24-205",
+  "title": "Consumer Protections for Artificial Intelligence",
+  "source_type": "statute",
+  "authority": "Colorado General Assembly",
+  "instrument_identifier": "SB24-205, Chapter 198",
+  "jurisdictions": [
+    {"country_code": "US", "subdivision_code": "US-CO", "name": "Colorado"}
+  ],
+  "official_url": "https://leg.colorado.gov/sites/default/files/2024a_205_signed.pdf",
+  "navigation_url": "https://leg.colorado.gov/bills/sb24-205",
+  "publication_date": "2024-05-17",
+  "effective_date": "2026-06-30",
+  "compliance_date": "2026-06-30",
+  "comment_deadline": null,
+  "legal_status": "effective",
+  "binding_effect": "binding",
+  "review_status": "source_verified",
+  "version": "Signed act, as affected by SB25B-004",
+  "retrieved_at": "2026-07-21T18:00:00Z",
+  "last_verified_at": "2026-07-21T18:00:00Z",
+  "content_sha256": null,
+  "topics": ["algorithmic-discrimination", "consumer-notice", "high-risk-ai", "impact-assessment"],
+  "covered_roles": ["ai-developer", "ai-deployer"],
+  "status_history": [
+    {
+      "status": "enacted",
+      "date": "2024-05-17",
+      "source_url": "https://leg.colorado.gov/bills/sb24-205",
+      "notes": "Approved by the governor as Chapter 198."
+    },
+    {
+      "status": "amended",
+      "date": "2025-08-28",
+      "source_url": "https://leg.colorado.gov/bills/sb25b-004",
+      "notes": "SB25B-004 extended the requirements' effective date to June 30, 2026."
+    },
+    {
+      "status": "effective",
+      "date": "2026-06-30",
+      "source_url": "https://leg.colorado.gov/bills/sb25b-004",
+      "notes": "Current compliance date recorded from the enacted effective-date amendment."
+    }
+  ],
+  "related_sources": [
+    {
+      "relationship": "amended_by",
+      "instrument_identifier": "SB25B-004, Chapter 3",
+      "url": "https://leg.colorado.gov/bills/sb25b-004",
+      "notes": "Extends the effective date of SB24-205 requirements."
+    }
+  ],
+  "notes": "Source-level metadata only; applicability and obligation interpretation require separate review."
+}

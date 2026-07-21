@@ -4,7 +4,8 @@ from pathlib import Path
 from typing import Iterable
 import json
 
-from jsonschema import Draft202012Validator, FormatChecker, RefResolver
+from jsonschema import Draft202012Validator, FormatChecker
+from referencing import Registry, Resource
 
 from .models import ValidationFinding, load_json
 
@@ -22,6 +23,13 @@ class RepositoryValidator:
     def __init__(self, schema_dir: Path):
         self.schema_dir = schema_dir
         self._schemas = self._load_schemas()
+        self._registry = Registry().with_resources(
+            (
+                schema.get("$id", name),
+                Resource.from_contents(schema),
+            )
+            for name, schema in self._schemas.items()
+        )
 
     def _load_schemas(self) -> dict[str, dict]:
         schemas: dict[str, dict] = {}
@@ -47,15 +55,9 @@ class RepositoryValidator:
             )
 
         schema = self._schemas[schema_name]
-        store = {
-            loaded_schema.get("$id", name): loaded_schema
-            for name, loaded_schema in self._schemas.items()
-        }
-        store.update(self._schemas)
-        resolver = RefResolver.from_schema(schema, store=store)
         validator = Draft202012Validator(
             schema,
-            resolver=resolver,
+            registry=self._registry,
             format_checker=FormatChecker(),
         )
         errors = sorted(validator.iter_errors(instance), key=lambda error: list(error.path))

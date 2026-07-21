@@ -5,8 +5,9 @@
   "type": "object",
   "required": [
     "record_type", "id", "title", "source_type", "authority",
-    "jurisdictions", "official_url", "publication_date",
-    "legal_status", "retrieved_at"
+    "instrument_identifier", "jurisdictions", "official_url", "publication_date",
+    "legal_status", "binding_effect", "review_status", "retrieved_at",
+    "last_verified_at", "topics", "status_history"
   ],
   "properties": {
     "record_type": {"const": "regulatory_source"},
@@ -14,12 +15,13 @@
     "title": {"type": "string", "minLength": 3},
     "source_type": {
       "enum": [
-        "statute", "regulation", "proposed_rule", "guidance",
+        "bill", "statute", "regulation", "proposed_rule", "guidance", "policy",
         "enforcement_action", "executive_order", "court_decision",
         "voluntary_standard", "framework", "other"
       ]
     },
     "authority": {"type": "string", "minLength": 2},
+    "instrument_identifier": {"type": "string", "minLength": 2},
     "jurisdictions": {
       "type": "array",
       "minItems": 1,
@@ -32,13 +34,69 @@
     "compliance_date": {"type": ["string", "null"], "format": "date"},
     "comment_deadline": {"type": ["string", "null"], "format": "date"},
     "legal_status": {
-      "enum": ["proposed", "final_not_effective", "effective", "superseded", "withdrawn", "nonbinding"]
+      "enum": [
+        "introduced", "proposed", "enacted", "final_not_effective", "effective",
+        "superseded", "repealed", "withdrawn", "nonbinding"
+      ]
     },
+    "binding_effect": {"enum": ["binding", "nonbinding", "mixed", "unknown"]},
+    "review_status": {"enum": ["unreviewed", "source_verified", "substantive_reviewed"]},
     "version": {"type": ["string", "null"]},
     "retrieved_at": {"type": "string", "format": "date-time"},
+    "last_verified_at": {"type": "string", "format": "date-time"},
     "content_sha256": {
       "type": ["string", "null"],
       "pattern": "^[a-fA-F0-9]{64}$"
+    },
+    "topics": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"}
+    },
+    "covered_roles": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"}
+    },
+    "status_history": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["status", "date"],
+        "properties": {
+          "status": {
+            "enum": [
+              "introduced", "proposed", "passed", "enacted", "final_not_effective",
+              "effective", "amended", "superseded", "repealed", "withdrawn", "nonbinding"
+            ]
+          },
+          "date": {"$ref": "common.schema.json#/$defs/iso_date"},
+          "source_url": {"type": ["string", "null"], "format": "uri"},
+          "notes": {"type": ["string", "null"]}
+        },
+        "additionalProperties": false
+      }
+    },
+    "related_sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["relationship", "instrument_identifier", "url"],
+        "properties": {
+          "relationship": {
+            "enum": [
+              "amends", "amended_by", "supersedes", "superseded_by",
+              "implements", "implemented_by", "related_to"
+            ]
+          },
+          "instrument_identifier": {"type": "string", "minLength": 2},
+          "url": {"$ref": "common.schema.json#/$defs/uri"},
+          "notes": {"type": ["string", "null"]}
+        },
+        "additionalProperties": false
+      }
     },
     "notes": {"type": ["string", "null"]}
   },

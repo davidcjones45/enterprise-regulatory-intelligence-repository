@@ -1,0 +1,42 @@
+{
+  "record_type": "regulatory_source",
+  "id": "SRC-US-TX-HB149",
+  "title": "Texas Responsible Artificial Intelligence Governance Act",
+  "source_type": "statute",
+  "authority": "Texas Legislature",
+  "instrument_identifier": "89(R) HB 149",
+  "jurisdictions": [
+    {"country_code": "US", "subdivision_code": "US-TX", "name": "Texas"}
+  ],
+  "official_url": "https://capitol.texas.gov/tlodocs/89R/billtext/html/HB00149F.htm",
+  "navigation_url": "https://capitol.texas.gov/billlookup/BillSummary.aspx?Bill=HB149&LegSess=89R",
+  "publication_date": "2025-06-22",
+  "effective_date": "2026-01-01",
+  "compliance_date": "2026-01-01",
+  "comment_deadline": null,
+  "legal_status": "effective",
+  "binding_effect": "binding",
+  "review_status": "source_verified",
+  "version": "Enrolled",
+  "retrieved_at": "2026-07-21T18:00:00Z",
+  "last_verified_at": "2026-07-21T18:00:00Z",
+  "content_sha256": null,
+  "topics": ["ai-disclosure", "biometric-data", "consumer-protection", "regulatory-sandbox"],
+  "covered_roles": ["ai-developer", "ai-deployer", "governmental-entity", "healthcare-provider"],
+  "status_history": [
+    {
+      "status": "enacted",
+      "date": "2025-06-22",
+      "source_url": "https://capitol.texas.gov/billlookup/Actions.aspx?Bill=HB149&LegSess=89R",
+      "notes": "Signed by the governor."
+    },
+    {
+      "status": "effective",
+      "date": "2026-01-01",
+      "source_url": "https://capitol.texas.gov/billlookup/BillSummary.aspx?Bill=HB149&LegSess=89R",
+      "notes": "Effective date reported by Texas Legislature Online."
+    }
+  ],
+  "related_sources": [],
+  "notes": "Source-level metadata only; applicability and obligation interpretation require separate review."
+}

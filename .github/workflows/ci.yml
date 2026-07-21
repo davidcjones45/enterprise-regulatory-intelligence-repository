@@ -25,3 +25,5 @@ jobs:
         run: pytest --cov=erir --cov-report=term-missing
       - name: Validate examples
         run: erir validate examples/valid
+      - name: Validate source catalog
+        run: erir validate catalog/sources

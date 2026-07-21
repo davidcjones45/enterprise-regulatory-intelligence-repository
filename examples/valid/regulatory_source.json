@@ -4,6 +4,7 @@
   "title": "Illustrative FTC proposed rule source record",
   "source_type": "proposed_rule",
   "authority": "Federal Trade Commission",
+  "instrument_identifier": "Illustrative FTC proposed rule",
   "jurisdictions": [
     {"country_code": "US", "subdivision_code": null, "name": "United States"}
   ],
@@ -14,8 +15,22 @@
   "compliance_date": null,
   "comment_deadline": "2026-07-31",
   "legal_status": "proposed",
+  "binding_effect": "unknown",
+  "review_status": "unreviewed",
   "version": "Illustrative record",
   "retrieved_at": "2026-07-21T12:00:00Z",
+  "last_verified_at": "2026-07-21T12:00:00Z",
   "content_sha256": null,
+  "topics": ["illustrative-ai-rulemaking"],
+  "covered_roles": [],
+  "status_history": [
+    {
+      "status": "proposed",
+      "date": "2026-07-07",
+      "source_url": "https://www.federalregister.gov/",
+      "notes": "Illustrative lifecycle event only."
+    }
+  ],
+  "related_sources": [],
   "notes": "Demonstration metadata only. Verify all source details against the authoritative publication before use."
 }

@@ -1,0 +1,36 @@
+{
+  "record_type": "regulatory_source",
+  "id": "SRC-US-NIST-AI-RMF-1-0",
+  "title": "Artificial Intelligence Risk Management Framework (AI RMF 1.0)",
+  "source_type": "framework",
+  "authority": "National Institute of Standards and Technology",
+  "instrument_identifier": "NIST AI 100-1",
+  "jurisdictions": [
+    {"country_code": "US", "subdivision_code": null, "name": "United States"}
+  ],
+  "official_url": "https://doi.org/10.6028/NIST.AI.100-1",
+  "navigation_url": "https://www.nist.gov/publications/artificial-intelligence-risk-management-framework-ai-rmf-10",
+  "publication_date": "2023-01-26",
+  "effective_date": null,
+  "compliance_date": null,
+  "comment_deadline": null,
+  "legal_status": "nonbinding",
+  "binding_effect": "nonbinding",
+  "review_status": "source_verified",
+  "version": "1.0",
+  "retrieved_at": "2026-07-21T18:00:00Z",
+  "last_verified_at": "2026-07-21T18:00:00Z",
+  "content_sha256": null,
+  "topics": ["ai-risk-management", "governance", "trustworthy-ai"],
+  "covered_roles": ["ai-developer", "ai-deployer", "ai-operator"],
+  "status_history": [
+    {
+      "status": "nonbinding",
+      "date": "2023-01-26",
+      "source_url": "https://www.nist.gov/publications/artificial-intelligence-risk-management-framework-ai-rmf-10",
+      "notes": "NIST released AI RMF 1.0 as a voluntary, non-sector-specific framework."
+    }
+  ],
+  "related_sources": [],
+  "notes": "Metadata verified against the NIST publication page. NIST states that AI RMF 1.0 is being revised."
+}
