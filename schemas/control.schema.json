@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aiathumanscale.com/schemas/control.schema.json",
+  "title": "Control",
+  "type": "object",
+  "required": [
+    "record_type", "id", "title", "objective", "control_type",
+    "owner", "frequency", "status", "obligation_ids"
+  ],
+  "properties": {
+    "record_type": {"const": "control"},
+    "id": {"$ref": "common.schema.json#/$defs/identifier"},
+    "title": {"type": "string", "minLength": 3},
+    "objective": {"type": "string", "minLength": 10},
+    "control_type": {"enum": ["preventive", "detective", "corrective", "directive"]},
+    "owner": {"type": "string", "minLength": 1},
+    "frequency": {"enum": ["continuous", "event_driven", "daily", "weekly", "monthly", "quarterly", "annual", "ad_hoc"]},
+    "status": {"enum": ["planned", "designed", "implemented", "operating", "retired", "deficient"]},
+    "obligation_ids": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "common.schema.json#/$defs/identifier"}
+    },
+    "procedure": {"type": ["string", "null"]},
+    "automation_level": {"enum": ["manual", "assisted", "automated"]},
+    "system_ids": {"type": "array", "items": {"type": "string"}}
+  },
+  "additionalProperties": false
+}

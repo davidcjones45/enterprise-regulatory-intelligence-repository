@@ -1,0 +1,27 @@
+{
+  "record_type": "obligation",
+  "id": "OBL-FTC-001",
+  "source_id": "SRC-FTC-2026-001",
+  "title": "Maintain substantiation for material AI accuracy claims",
+  "normalized_text": "A covered organization would maintain documented, reproducible substantiation for material claims concerning the accuracy or performance of an AI-enabled service.",
+  "obligation_type": "documentation",
+  "binding_status": "proposed",
+  "citations": [
+    {
+      "locator_type": "page",
+      "locator": "Illustrative pinpoint citation",
+      "quoted_text": null,
+      "notes": "Replace with verified authoritative pinpoint citation."
+    }
+  ],
+  "subjects": ["covered organization"],
+  "actions": ["maintain documented and reproducible substantiation"],
+  "objects": ["material AI accuracy and performance claims"],
+  "conditions": ["when making a material claim about an AI-enabled service"],
+  "exceptions": [],
+  "deadline_expression": null,
+  "review_status": "analyst_reviewed",
+  "reviewed_by": "David C. Jones",
+  "reviewed_at": "2026-07-21T12:15:00Z",
+  "notes": "Illustrative normalized obligation; not a legal conclusion."
+}

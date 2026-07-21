@@ -1,0 +1,14 @@
+{
+  "record_type": "control",
+  "id": "CTL-CLAIMS-001",
+  "title": "AI claim substantiation review",
+  "objective": "Prevent unsupported material claims about AI service accuracy, performance, or outcomes.",
+  "control_type": "preventive",
+  "owner": "Product Compliance Manager",
+  "frequency": "event_driven",
+  "status": "designed",
+  "obligation_ids": ["OBL-FTC-001"],
+  "procedure": "Before publication, an accountable reviewer verifies the claim, test method, dataset provenance, limitations, and reproducibility package.",
+  "automation_level": "assisted",
+  "system_ids": ["SYS-DEMO-001"]
+}

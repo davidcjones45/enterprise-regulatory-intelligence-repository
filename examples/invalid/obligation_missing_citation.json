@@ -1,0 +1,12 @@
+{
+  "record_type": "obligation",
+  "id": "OBL-INVALID-001",
+  "source_id": "SRC-FTC-2026-001",
+  "title": "Invalid obligation",
+  "normalized_text": "This deliberately invalid example omits the required citation collection.",
+  "obligation_type": "documentation",
+  "binding_status": "proposed",
+  "subjects": ["covered organization"],
+  "actions": ["maintain documentation"],
+  "review_status": "machine_extracted"
+}

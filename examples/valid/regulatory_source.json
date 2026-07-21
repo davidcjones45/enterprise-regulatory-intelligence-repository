@@ -1,0 +1,21 @@
+{
+  "record_type": "regulatory_source",
+  "id": "SRC-FTC-2026-001",
+  "title": "Illustrative FTC proposed rule source record",
+  "source_type": "proposed_rule",
+  "authority": "Federal Trade Commission",
+  "jurisdictions": [
+    {"country_code": "US", "subdivision_code": null, "name": "United States"}
+  ],
+  "official_url": "https://www.govinfo.gov/",
+  "navigation_url": "https://www.federalregister.gov/",
+  "publication_date": "2026-07-07",
+  "effective_date": null,
+  "compliance_date": null,
+  "comment_deadline": "2026-07-31",
+  "legal_status": "proposed",
+  "version": "Illustrative record",
+  "retrieved_at": "2026-07-21T12:00:00Z",
+  "content_sha256": null,
+  "notes": "Demonstration metadata only. Verify all source details against the authoritative publication before use."
+}

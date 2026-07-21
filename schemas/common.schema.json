@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aiathumanscale.com/schemas/common.schema.json",
+  "$defs": {
+    "identifier": {
+      "type": "string",
+      "pattern": "^[A-Z][A-Z0-9_-]{2,63}$"
+    },
+    "iso_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "uri": {
+      "type": "string",
+      "format": "uri"
+    },
+    "jurisdiction": {
+      "type": "object",
+      "required": ["country_code", "name"],
+      "properties": {
+        "country_code": {"type": "string", "pattern": "^[A-Z]{2}$"},
+        "subdivision_code": {"type": ["string", "null"]},
+        "name": {"type": "string", "minLength": 1}
+      },
+      "additionalProperties": false
+    },
+    "citation": {
+      "type": "object",
+      "required": ["locator_type", "locator"],
+      "properties": {
+        "locator_type": {
+          "enum": ["page", "section", "paragraph", "article", "recital", "line", "other"]
+        },
+        "locator": {"type": "string", "minLength": 1},
+        "quoted_text": {"type": ["string", "null"]},
+        "notes": {"type": ["string", "null"]}
+      },
+      "additionalProperties": false
+    }
+  }
+}

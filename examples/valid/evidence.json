@@ -1,0 +1,19 @@
+{
+  "record_type": "evidence",
+  "id": "EVD-CLAIMS-001",
+  "control_id": "CTL-CLAIMS-001",
+  "evidence_type": "test_result",
+  "description": "Illustrative signed validation report supporting a proposed model-accuracy claim.",
+  "uri": "https://example.invalid/evidence/validation-report-001",
+  "collected_at": "2026-07-21T12:45:00Z",
+  "collector": "Reference Implementation Loader",
+  "period_start": null,
+  "period_end": null,
+  "integrity": {
+    "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "signed": false,
+    "signature_reference": null
+  },
+  "retention_until": "2033-07-21",
+  "assessment_result": "not_assessed"
+}

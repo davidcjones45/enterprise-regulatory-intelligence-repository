@@ -1,0 +1,28 @@
+{
+  "record_type": "applicability_assessment",
+  "id": "APP-FTC-001",
+  "obligation_id": "OBL-FTC-001",
+  "subject_asset_id": "SYS-DEMO-001",
+  "decision": "potentially_applies",
+  "reasoning": "The demonstration service generates consumer-facing performance claims in the United States, but the source is a proposal and the final scope and definitions remain unresolved.",
+  "facts": [
+    {
+      "name": "consumer_facing_claims",
+      "value": true,
+      "source": "System inventory record SYS-DEMO-001"
+    },
+    {
+      "name": "deployment_country",
+      "value": "US",
+      "source": "System inventory record SYS-DEMO-001"
+    }
+  ],
+  "assumptions": [
+    "The service would fall within the proposal's final covered-entity definition."
+  ],
+  "confidence": 0.65,
+  "assessor": "David C. Jones",
+  "assessed_at": "2026-07-21T12:30:00Z",
+  "next_review_date": "2026-08-15",
+  "approval_status": "draft"
+}

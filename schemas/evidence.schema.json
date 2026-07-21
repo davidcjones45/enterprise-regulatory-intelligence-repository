@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aiathumanscale.com/schemas/evidence.schema.json",
+  "title": "Compliance Evidence",
+  "type": "object",
+  "required": [
+    "record_type", "id", "control_id", "evidence_type",
+    "description", "collected_at", "collector", "integrity"
+  ],
+  "properties": {
+    "record_type": {"const": "evidence"},
+    "id": {"$ref": "common.schema.json#/$defs/identifier"},
+    "control_id": {"$ref": "common.schema.json#/$defs/identifier"},
+    "evidence_type": {
+      "enum": ["document", "log", "ticket", "attestation", "test_result", "configuration", "dataset", "other"]
+    },
+    "description": {"type": "string", "minLength": 10},
+    "uri": {"type": ["string", "null"], "format": "uri"},
+    "collected_at": {"type": "string", "format": "date-time"},
+    "collector": {"type": "string", "minLength": 1},
+    "period_start": {"type": ["string", "null"], "format": "date-time"},
+    "period_end": {"type": ["string", "null"], "format": "date-time"},
+    "integrity": {
+      "type": "object",
+      "required": ["sha256"],
+      "properties": {
+        "sha256": {"type": "string", "pattern": "^[a-fA-F0-9]{64}$"},
+        "signed": {"type": "boolean"},
+        "signature_reference": {"type": ["string", "null"]}
+      },
+      "additionalProperties": false
+    },
+    "retention_until": {"type": ["string", "null"], "format": "date"},
+    "assessment_result": {"enum": ["pass", "fail", "not_assessed", "not_applicable"]}
+  },
+  "additionalProperties": false
+}

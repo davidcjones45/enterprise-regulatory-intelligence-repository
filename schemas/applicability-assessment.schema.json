@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aiathumanscale.com/schemas/applicability-assessment.schema.json",
+  "title": "Applicability Assessment",
+  "type": "object",
+  "required": [
+    "record_type", "id", "obligation_id", "subject_asset_id",
+    "decision", "reasoning", "facts", "assessor", "assessed_at"
+  ],
+  "properties": {
+    "record_type": {"const": "applicability_assessment"},
+    "id": {"$ref": "common.schema.json#/$defs/identifier"},
+    "obligation_id": {"$ref": "common.schema.json#/$defs/identifier"},
+    "subject_asset_id": {"$ref": "common.schema.json#/$defs/identifier"},
+    "decision": {"enum": ["applies", "does_not_apply", "potentially_applies", "undetermined"]},
+    "reasoning": {"type": "string", "minLength": 20},
+    "facts": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["name", "value", "source"],
+        "properties": {
+          "name": {"type": "string", "minLength": 1},
+          "value": {},
+          "source": {"type": "string", "minLength": 1}
+        },
+        "additionalProperties": false
+      }
+    },
+    "assumptions": {"type": "array", "items": {"type": "string"}},
+    "confidence": {"type": "number", "minimum": 0, "maximum": 1},
+    "assessor": {"type": "string", "minLength": 1},
+    "assessed_at": {"type": "string", "format": "date-time"},
+    "next_review_date": {"type": ["string", "null"], "format": "date"},
+    "approval_status": {"enum": ["draft", "reviewed", "approved", "rejected"]}
+  },
+  "additionalProperties": false
+}
