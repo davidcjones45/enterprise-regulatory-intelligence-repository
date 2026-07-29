@@ -4,7 +4,6 @@ from erir.cli import build_parser
 from erir.source_catalog import filter_sources, format_source_table, load_sources
 from erir.validator import RepositoryValidator
 
-
 ROOT = Path(__file__).resolve().parents[1]
 CATALOG = ROOT / "catalog" / "sources"
 
