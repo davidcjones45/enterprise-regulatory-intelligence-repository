@@ -6,7 +6,6 @@ import pytest
 from erir.ledger import connect, initialize, load_records, reconstruct_obligation
 from erir.models import load_json
 
-
 ROOT = Path(__file__).resolve().parents[1]
 
 
