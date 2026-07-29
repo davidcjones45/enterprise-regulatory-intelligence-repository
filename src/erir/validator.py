@@ -1,14 +1,13 @@
 from __future__ import annotations
 
-from pathlib import Path
-from typing import Iterable
 import json
+from collections.abc import Iterable
+from pathlib import Path
 
 from jsonschema import Draft202012Validator, FormatChecker
 from referencing import Registry, Resource
 
 from .models import ValidationFinding, load_json
-
 
 SCHEMA_BY_RECORD_TYPE = {
     "regulatory_source": "regulatory-source.schema.json",
@@ -16,6 +15,8 @@ SCHEMA_BY_RECORD_TYPE = {
     "applicability_assessment": "applicability-assessment.schema.json",
     "control": "control.schema.json",
     "evidence": "evidence.schema.json",
+    "subject_profile": "subject-profile.schema.json",
+    "applicability_rule": "applicability-rule.schema.json",
 }
 
 

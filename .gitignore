@@ -14,3 +14,5 @@ build/
 .vscode/
 .idea/
 .DS_Store
+work-pytest-temp/
+test-run-*/

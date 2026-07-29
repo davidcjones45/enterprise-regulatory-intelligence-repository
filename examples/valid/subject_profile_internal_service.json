@@ -1,0 +1,14 @@
+{
+  "record_type": "subject_profile",
+  "id": "SYS-DEMO-002",
+  "title": "Illustrative internal AI analytics service",
+  "facts": {
+    "deployment_country": "US",
+    "consumer_facing_claims": false,
+    "uses_ai": true,
+    "deployment_roles": ["deployer"]
+  },
+  "profile_owner": "Illustrative Analytics Owner",
+  "updated_at": "2026-07-29T12:00:00Z",
+  "notes": "Demonstration profile only. The absence of a match is not a finding that no requirement applies."
+}

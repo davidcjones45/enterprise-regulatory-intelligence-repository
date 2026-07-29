@@ -24,6 +24,7 @@ The reference implementation answers five core questions:
 - Automated tests.
 - GitHub Actions continuous integration.
 - Vendor-neutral data structures suitable for later graph, vector, API, or GRC integration.
+- A local, read-only demonstration interface that shows source-to-evidence traceability.
 
 ## Repository structure
 
@@ -61,6 +62,8 @@ erir validate examples/invalid
 erir init-ledger erir.db
 erir load-examples erir.db examples/valid
 erir reconstruct erir.db OBL-FTC-001
+erir screen-profile examples/valid/subject_profile.json examples/valid/applicability_rule.json
+erir serve-demo
 ```
 
 macOS or Linux:
@@ -83,6 +86,22 @@ coverage.
 `source_verified` means identifying metadata was checked against the linked authoritative
 publication. It does not mean the record received legal review or that an organization is in
 scope. Applicability and normalized obligations remain separate records and review decisions.
+
+## Demonstration interface
+
+Run `erir serve-demo` and open `http://127.0.0.1:8765` in a browser. The local
+interface presents one illustrative path from source to normalized obligation,
+subject profile, fact-based applicability screen, mapped control, and evidence.
+
+The screening result is intentionally limited to `potentially_applies` or
+`undetermined`. It is not a legal conclusion, and human review remains required.
+Reviewer dispositions are written to a local SQLite ledger (`demo-review.db`),
+which is ignored by Git. The local demonstration is not an authenticated
+production workflow.
+
+For a concise, client-facing walkthrough, see [the ten-minute demonstration
+script](docs/demo-script.md). It preserves the distinction between illustrative
+examples and verified source material.
 
 ## Design principles
 

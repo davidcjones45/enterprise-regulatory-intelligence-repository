@@ -1,12 +1,13 @@
 from __future__ import annotations
 
-from datetime import datetime, timezone
-from pathlib import Path
 import hashlib
 import json
 import sqlite3
-from typing import Any, Iterable
 import uuid
+from collections.abc import Iterable
+from datetime import UTC, datetime
+from pathlib import Path
+from typing import Any
 
 
 def connect(database: Path) -> sqlite3.Connection:
@@ -36,7 +37,7 @@ def append_record(
     actor: str = "reference-loader",
 ) -> str:
     event_id = str(uuid.uuid4())
-    occurred_at = datetime.now(timezone.utc).isoformat()
+    occurred_at = datetime.now(UTC).isoformat()
     payload = canonical_json(record)
     digest = record_hash(record)
     record_id = record["id"]
@@ -71,6 +72,91 @@ def load_records(connection: sqlite3.Connection, records: Iterable[dict[str, Any
             append_record(connection, record)
             count += 1
     return count
+
+
+def append_review_disposition(
+    connection: sqlite3.Connection,
+    *,
+    scenario_id: str,
+    disposition: str,
+    reviewer: str,
+    rationale: str,
+) -> dict[str, Any]:
+    """Append a human review disposition and update its current projection."""
+    reviewed_at = datetime.now(UTC).isoformat()
+    review = {
+        "record_type": "applicability_review",
+        "id": str(uuid.uuid4()),
+        "scenario_id": scenario_id,
+        "disposition": disposition,
+        "reviewer": reviewer,
+        "rationale": rationale,
+        "reviewed_at": reviewed_at,
+    }
+    previous = connection.execute(
+        "SELECT payload_sha256 FROM ledger_event ORDER BY sequence_no DESC LIMIT 1"
+    ).fetchone()
+    payload = canonical_json(review)
+    digest = record_hash(review)
+    with connection:
+        connection.execute(
+            """
+            INSERT INTO ledger_event
+                (event_id, occurred_at, event_type, record_type, record_id, actor, payload_json,
+                 payload_sha256, previous_event_sha256)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+            """,
+            (
+                review["id"],
+                reviewed_at,
+                "review.disposition_recorded",
+                "applicability_review",
+                scenario_id,
+                reviewer,
+                payload,
+                digest,
+                previous["payload_sha256"] if previous else None,
+            ),
+        )
+        connection.execute(
+            """
+            INSERT INTO current_record (record_type, record_id, payload_json, payload_sha256, updated_at)
+            VALUES (?, ?, ?, ?, ?)
+            ON CONFLICT(record_type, record_id) DO UPDATE SET
+                payload_json = excluded.payload_json,
+                payload_sha256 = excluded.payload_sha256,
+                updated_at = excluded.updated_at
+            """,
+            ("applicability_review", scenario_id, payload, digest, reviewed_at),
+        )
+    return review
+
+
+def current_review_dispositions(connection: sqlite3.Connection) -> dict[str, dict[str, Any]]:
+    rows = connection.execute(
+        "SELECT record_id, payload_json FROM current_record WHERE record_type = 'applicability_review'"
+    ).fetchall()
+    return {row["record_id"]: json.loads(row["payload_json"]) for row in rows}
+
+
+def review_history(connection: sqlite3.Connection, scenario_id: str) -> list[dict[str, Any]]:
+    rows = connection.execute(
+        """
+        SELECT occurred_at, actor, payload_json, payload_sha256, previous_event_sha256
+        FROM ledger_event
+        WHERE event_type = 'review.disposition_recorded' AND record_id = ?
+        ORDER BY sequence_no
+        """,
+        (scenario_id,),
+    ).fetchall()
+    return [
+        {
+            **json.loads(row["payload_json"]),
+            "event_hash": row["payload_sha256"],
+            "previous_event_hash": row["previous_event_sha256"],
+        }
+        for row in rows
+    ]
 
 
 def reconstruct_obligation(connection: sqlite3.Connection, obligation_id: str) -> list[dict[str, Any]]:

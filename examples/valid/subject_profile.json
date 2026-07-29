@@ -1,0 +1,14 @@
+{
+  "record_type": "subject_profile",
+  "id": "SYS-DEMO-001",
+  "title": "Illustrative consumer-facing AI service",
+  "facts": {
+    "deployment_country": "US",
+    "consumer_facing_claims": true,
+    "uses_ai": true,
+    "deployment_roles": ["deployer"]
+  },
+  "profile_owner": "Illustrative Product Owner",
+  "updated_at": "2026-07-29T12:00:00Z",
+  "notes": "Demonstration profile only. Facts must be verified by accountable owners before a screening result is reviewed."
+}

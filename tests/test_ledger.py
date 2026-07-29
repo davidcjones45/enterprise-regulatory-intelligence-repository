@@ -15,7 +15,7 @@ def test_ledger_load_and_reconstruct(tmp_path):
     records = [load_json(path) for path in sorted((ROOT / "examples" / "valid").glob("*.json"))]
 
     with connect(database) as connection:
-        assert load_records(connection, records) == 5
+        assert load_records(connection, records) == len(records)
         result = reconstruct_obligation(connection, "OBL-FTC-001")
         assert len(result) == 1
         assert result[0]["source_json"] is not None
