@@ -26,19 +26,20 @@
 
 ## Release 0.3 - Applicability rules
 
-- Product and system inventory schema.
-- Jurisdiction and role predicates.
-- Explainable rules.
-- Human approval workflow.
-- Regression tests for applicability decisions.
+- Product and system profile schema.
+- Bounded, explainable fact predicates.
+- Screening results limited to `potentially_applies` or `undetermined`.
+- Explicit human-review boundary; no automated legal conclusion.
+- Regression tests for matching and incomplete facts.
 
 ## Release 0.4 - API and user interface
 
-- Read-only query API.
-- Review queue.
-- Obligation trace view.
-- Evidence sufficiency dashboard.
-- Export package.
+- Read-only local demonstration interface for the source-to-evidence trace.
+- Local review queue with reviewer, status, rationale, and review history.
+- Local SQLite persistence for review dispositions.
+- Downloadable JSON evidence package for an illustrative scenario.
+- Authenticated workflow, broader obligation trace view, evidence sufficiency
+  dashboard, and production API remain future work.
 
 ## Release 0.5 - Integration adapters
 

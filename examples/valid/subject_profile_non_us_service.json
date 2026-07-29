@@ -1,0 +1,14 @@
+{
+  "record_type": "subject_profile",
+  "id": "SYS-DEMO-003",
+  "title": "Illustrative non-US consumer AI service",
+  "facts": {
+    "deployment_country": "CA",
+    "consumer_facing_claims": true,
+    "uses_ai": true,
+    "deployment_roles": ["deployer"]
+  },
+  "profile_owner": "Illustrative Regional Product Owner",
+  "updated_at": "2026-07-29T12:00:00Z",
+  "notes": "Demonstration profile only. The profile is intentionally outside the illustrative country predicate."
+}

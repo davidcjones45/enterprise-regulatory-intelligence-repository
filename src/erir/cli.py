@@ -1,9 +1,11 @@
 from __future__ import annotations
 
 import argparse
-from pathlib import Path
 import json
+from pathlib import Path
 
+from .applicability import screen_profile
+from .demo import serve_demo
 from .ledger import connect, initialize, load_records, reconstruct_obligation
 from .models import load_json
 from .source_catalog import filter_sources, format_source_table, load_sources
@@ -67,6 +69,18 @@ def cmd_sources_list(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_screen_profile(args: argparse.Namespace) -> int:
+    profile = load_json(Path(args.profile))
+    rule = load_json(Path(args.rule))
+    print(json.dumps(screen_profile(profile, rule), indent=2))
+    return 0
+
+
+def cmd_serve_demo(args: argparse.Namespace) -> int:
+    serve_demo(repository_root(), args.port)
+    return 0
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="erir",
@@ -106,6 +120,18 @@ def build_parser() -> argparse.ArgumentParser:
     sources_list.add_argument("--binding-effect", help="Binding effect classification")
     sources_list.add_argument("--format", choices=("table", "json"), default="table")
     sources_list.set_defaults(func=cmd_sources_list)
+
+    screen = subparsers.add_parser(
+        "screen-profile",
+        help="Run a fact-based applicability screen; human review remains required",
+    )
+    screen.add_argument("profile", help="Path to a subject_profile JSON record")
+    screen.add_argument("rule", help="Path to an applicability_rule JSON record")
+    screen.set_defaults(func=cmd_screen_profile)
+
+    demo = subparsers.add_parser("serve-demo", help="Serve the local demonstration interface")
+    demo.add_argument("--port", type=int, default=8765, help="Local port to use (default: 8765)")
+    demo.set_defaults(func=cmd_serve_demo)
 
     return parser
 

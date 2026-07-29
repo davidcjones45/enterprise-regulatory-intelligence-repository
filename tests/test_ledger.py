@@ -1,10 +1,10 @@
+import sqlite3
 from pathlib import Path
 
 import pytest
 
 from erir.ledger import connect, initialize, load_records, reconstruct_obligation
 from erir.models import load_json
-
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -15,7 +15,7 @@ def test_ledger_load_and_reconstruct(tmp_path):
     records = [load_json(path) for path in sorted((ROOT / "examples" / "valid").glob("*.json"))]
 
     with connect(database) as connection:
-        assert load_records(connection, records) == 5
+        assert load_records(connection, records) == len(records)
         result = reconstruct_obligation(connection, "OBL-FTC-001")
         assert len(result) == 1
         assert result[0]["source_json"] is not None
@@ -29,5 +29,5 @@ def test_ledger_is_append_only(tmp_path):
 
     with connect(database) as connection:
         load_records(connection, records)
-        with pytest.raises(Exception):
+        with pytest.raises(sqlite3.IntegrityError, match="ledger_event is append-only"):
             connection.execute("DELETE FROM ledger_event")

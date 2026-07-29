@@ -2,7 +2,6 @@ from pathlib import Path
 
 from erir.validator import RepositoryValidator
 
-
 ROOT = Path(__file__).resolve().parents[1]
 
 

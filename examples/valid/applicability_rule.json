@@ -1,0 +1,14 @@
+{
+  "record_type": "applicability_rule",
+  "id": "RULE-FTC-DEMO-001",
+  "obligation_id": "OBL-FTC-001",
+  "criteria": [
+    {"fact": "deployment_country", "operator": "equals", "value": "US"},
+    {"fact": "consumer_facing_claims", "operator": "equals", "value": true}
+  ],
+  "rationale": "Illustrative screening rule for a demonstration-only proposed obligation; a qualified reviewer must determine scope and applicability.",
+  "review_status": "analyst_reviewed",
+  "reviewed_by": "David C. Jones",
+  "reviewed_at": "2026-07-29T12:00:00Z",
+  "notes": "A matching screening result is not a legal conclusion and must not be treated as compliance advice."
+}
