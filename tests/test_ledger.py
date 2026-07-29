@@ -1,3 +1,4 @@
+import sqlite3
 from pathlib import Path
 
 import pytest
@@ -29,5 +30,5 @@ def test_ledger_is_append_only(tmp_path):
 
     with connect(database) as connection:
         load_records(connection, records)
-        with pytest.raises(Exception):
+        with pytest.raises(sqlite3.IntegrityError, match="ledger_event is append-only"):
             connection.execute("DELETE FROM ledger_event")
