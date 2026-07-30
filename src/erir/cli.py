@@ -6,6 +6,7 @@ from pathlib import Path
 
 from .applicability import screen_profile
 from .demo import serve_demo
+from .ingestion import SourceIngestor
 from .ledger import connect, initialize, load_records, reconstruct_obligation
 from .models import load_json
 from .source_catalog import filter_sources, format_source_table, load_sources
@@ -76,6 +77,38 @@ def cmd_screen_profile(args: argparse.Namespace) -> int:
     return 0
 
 
+def _source_by_id(directory: Path, source_id: str) -> dict[str, object]:
+    for source in load_sources(directory):
+        if source["id"] == source_id:
+            return source
+    raise ValueError(f"Source not found: {source_id}")
+
+
+def cmd_ingest_source(args: argparse.Namespace) -> int:
+    source = _source_by_id(Path(args.directory), args.source_id)
+    snapshot = SourceIngestor(Path(args.storage_directory)).ingest(source)
+    print(json.dumps(snapshot, indent=2))
+    return 0
+
+
+def cmd_ingestion_queue(args: argparse.Namespace) -> int:
+    ingestor = SourceIngestor(Path(args.storage_directory))
+    print(json.dumps(ingestor.extraction_tasks(), indent=2))
+    return 0
+
+
+def cmd_queue_machine_candidate(args: argparse.Namespace) -> int:
+    candidate = SourceIngestor(Path(args.storage_directory)).queue_machine_candidate(
+        source_id=args.source_id,
+        snapshot_sha256=args.snapshot_sha256,
+        candidate_text=args.candidate_text,
+        pinpoint=args.pinpoint,
+        generator=args.generator,
+    )
+    print(json.dumps(candidate, indent=2))
+    return 0
+
+
 def cmd_serve_demo(args: argparse.Namespace) -> int:
     serve_demo(repository_root(), args.port)
     return 0
@@ -128,6 +161,25 @@ def build_parser() -> argparse.ArgumentParser:
     screen.add_argument("profile", help="Path to a subject_profile JSON record")
     screen.add_argument("rule", help="Path to an applicability_rule JSON record")
     screen.set_defaults(func=cmd_screen_profile)
+
+    ingest = subparsers.add_parser("ingest-source", help="Retrieve and snapshot an authoritative source")
+    ingest.add_argument("source_id", help="Catalog source identifier")
+    ingest.add_argument("--directory", default=str(repository_root() / "catalog" / "sources"))
+    ingest.add_argument("--storage-directory", default="ingestion-data")
+    ingest.set_defaults(func=cmd_ingest_source)
+
+    ingestion_queue = subparsers.add_parser("ingestion-queue", help="List pending extraction tasks")
+    ingestion_queue.add_argument("--storage-directory", default="ingestion-data")
+    ingestion_queue.set_defaults(func=cmd_ingestion_queue)
+
+    candidate = subparsers.add_parser("queue-machine-candidate", help="Queue a machine-generated candidate")
+    candidate.add_argument("source_id")
+    candidate.add_argument("snapshot_sha256")
+    candidate.add_argument("candidate_text")
+    candidate.add_argument("--pinpoint", required=True)
+    candidate.add_argument("--generator", required=True)
+    candidate.add_argument("--storage-directory", default="ingestion-data")
+    candidate.set_defaults(func=cmd_queue_machine_candidate)
 
     demo = subparsers.add_parser("serve-demo", help="Serve the local demonstration interface")
     demo.add_argument("--port", type=int, default=8765, help="Local port to use (default: 8765)")
