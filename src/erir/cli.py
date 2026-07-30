@@ -7,6 +7,7 @@ from pathlib import Path
 from .applicability import screen_profile
 from .demo import serve_demo
 from .ingestion import SourceIngestor
+from .integration import build_event, build_grc_package
 from .ledger import connect, initialize, load_records, reconstruct_obligation
 from .models import load_json
 from .source_catalog import filter_sources, format_source_table, load_sources
@@ -109,6 +110,17 @@ def cmd_queue_machine_candidate(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_export_grc(args: argparse.Namespace) -> int:
+    records = [load_json(path) for path in sorted(Path(args.directory).rglob("*.json"))]
+    print(json.dumps(build_grc_package(records), indent=2))
+    return 0
+
+
+def cmd_emit_event(args: argparse.Namespace) -> int:
+    print(json.dumps(build_event(load_json(Path(args.record)), event_type=args.event_type), indent=2))
+    return 0
+
+
 def cmd_serve_demo(args: argparse.Namespace) -> int:
     serve_demo(repository_root(), args.port)
     return 0
@@ -180,6 +192,15 @@ def build_parser() -> argparse.ArgumentParser:
     candidate.add_argument("--generator", required=True)
     candidate.add_argument("--storage-directory", default="ingestion-data")
     candidate.set_defaults(func=cmd_queue_machine_candidate)
+
+    export_grc = subparsers.add_parser("export-grc", help="Export a vendor-neutral GRC import package")
+    export_grc.add_argument("directory", help="Directory containing ERIR JSON records")
+    export_grc.set_defaults(func=cmd_export_grc)
+
+    emit_event = subparsers.add_parser("emit-event", help="Create a generic record event without sending it")
+    emit_event.add_argument("record", help="Path to an ERIR JSON record")
+    emit_event.add_argument("--event-type", default="erir.record.upserted")
+    emit_event.set_defaults(func=cmd_emit_event)
 
     demo = subparsers.add_parser("serve-demo", help="Serve the local demonstration interface")
     demo.add_argument("--port", type=int, default=8765, help="Local port to use (default: 8765)")
