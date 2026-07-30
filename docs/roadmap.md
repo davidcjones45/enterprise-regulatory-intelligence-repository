@@ -43,7 +43,7 @@
 
 ## Release 0.5 - Integration adapters
 
-- Generic webhook/event interface.
-- GRC import/export contract.
-- OnSpring adapter proof of concept.
+- Generic webhook/event interface. (complete)
+- GRC import/export contract. (complete)
+- OnSpring adapter proof of concept. (deferred pending an approved target object model and environment)
 - Graph and vector projections.

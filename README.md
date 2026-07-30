@@ -26,6 +26,7 @@ The reference implementation answers five core questions:
 - Vendor-neutral data structures suitable for later graph, vector, API, or GRC integration.
 - A local, read-only demonstration interface that shows source-to-evidence traceability.
 - Authoritative-source snapshots with SHA-256 integrity values, change detection, and review queues.
+- Vendor-neutral GRC import packages and CloudEvents-compatible integration events.
 
 ## Repository structure
 
@@ -61,6 +62,8 @@ erir sources list
 erir sources list --jurisdiction Colorado --status effective
 erir ingest-source SRC-US-NIST-AI-RMF-1-0
 erir ingestion-queue
+erir export-grc examples/valid
+erir emit-event examples/valid/obligation.json
 erir validate examples/invalid
 erir init-ledger erir.db
 erir load-examples erir.db examples/valid
@@ -108,6 +111,10 @@ production workflow.
 immutable content-addressed snapshot, and queues new or changed material for extraction review.
 The tool only records machine-generated candidate text when its source snapshot, pinpoint, and
 generator identity are retained. It never approves a candidate or creates a legal conclusion.
+
+## Integration adapters
+
+`erir export-grc` creates a versioned, vendor-neutral JSON import package. `erir emit-event` creates a CloudEvents-compatible event locally; sending events to an endpoint is an explicit integration action. See [the integration contract](docs/integration-contract.md).
 
 For a concise, client-facing walkthrough, see [the ten-minute demonstration
 script](docs/demo-script.md). It preserves the distinction between illustrative
