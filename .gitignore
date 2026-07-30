@@ -16,3 +16,4 @@ build/
 .DS_Store
 work-pytest-temp/
 test-run-*/
+ingestion-data/

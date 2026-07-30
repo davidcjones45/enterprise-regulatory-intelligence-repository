@@ -25,6 +25,7 @@ The reference implementation answers five core questions:
 - GitHub Actions continuous integration.
 - Vendor-neutral data structures suitable for later graph, vector, API, or GRC integration.
 - A local, read-only demonstration interface that shows source-to-evidence traceability.
+- Authoritative-source snapshots with SHA-256 integrity values, change detection, and review queues.
 
 ## Repository structure
 
@@ -58,6 +59,8 @@ erir validate examples/valid
 erir validate catalog/sources
 erir sources list
 erir sources list --jurisdiction Colorado --status effective
+erir ingest-source SRC-US-NIST-AI-RMF-1-0
+erir ingestion-queue
 erir validate examples/invalid
 erir init-ledger erir.db
 erir load-examples erir.db examples/valid
@@ -98,6 +101,13 @@ The screening result is intentionally limited to `potentially_applies` or
 Reviewer dispositions are written to a local SQLite ledger (`demo-review.db`),
 which is ignored by Git. The local demonstration is not an authenticated
 production workflow.
+
+## Source ingestion
+
+`erir ingest-source <source-id>` retrieves the catalog record's official URL, stores an
+immutable content-addressed snapshot, and queues new or changed material for extraction review.
+The tool only records machine-generated candidate text when its source snapshot, pinpoint, and
+generator identity are retained. It never approves a candidate or creates a legal conclusion.
 
 For a concise, client-facing walkthrough, see [the ten-minute demonstration
 script](docs/demo-script.md). It preserves the distinction between illustrative

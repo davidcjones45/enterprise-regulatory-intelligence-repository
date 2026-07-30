@@ -19,10 +19,10 @@
 
 ## Release 0.2.1 - Source ingestion automation
 
-- Authoritative document download and integrity verification.
-- Change detection against previously retrieved content.
-- Extraction work queue.
-- Provenance for machine-generated obligation candidates.
+- Authoritative document download and integrity verification. (complete)
+- Change detection against previously retrieved content. (complete)
+- Extraction work queue. (complete)
+- Provenance for machine-generated obligation candidates. (complete)
 
 ## Release 0.3 - Applicability rules
 
