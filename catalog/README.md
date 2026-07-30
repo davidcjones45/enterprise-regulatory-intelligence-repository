@@ -15,6 +15,11 @@ traceability; they do not substitute for the source text or legal analysis.
 The included records are `source_verified`. Their applicability and legal interpretation have
 not been substantively reviewed.
 
+The initial US AI corpus includes federal frameworks and guidance, federal-agency policy,
+state and local law. Discovery portals, such as the FTC AI portal, are retained for source
+monitoring; each linked legal instrument must be captured as its own record before it is
+treated as a requirement.
+
 ## Query examples
 
 ```powershell
