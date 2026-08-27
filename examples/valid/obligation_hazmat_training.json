@@ -1,0 +1,20 @@
+{
+  "record_type": "obligation",
+  "id": "OBL-HAZMAT-TRAINING-001",
+  "source_id": "SRC-US-DOT-PHMSA-HMR-172",
+  "title": "Review hazardous-material employee training evidence",
+  "normalized_text": "A qualified reviewer would assess whether the relevant hazmat-employee training requirement and current training evidence under 49 CFR 172.704 apply to the identified function.",
+  "obligation_type": "documentation",
+  "binding_status": "binding",
+  "citations": [{"locator_type": "section", "locator": "49 CFR 172.704", "quoted_text": null, "notes": "Fixture-level pinpoint for training review; functional role and recurrence details are not inferred."}],
+  "subjects": ["hazmat employee", "hazmat employer"],
+  "actions": ["review training requirement and retained evidence"],
+  "objects": ["hazardous-material function"],
+  "conditions": ["when the individual performs a covered hazmat function"],
+  "exceptions": [],
+  "deadline_expression": null,
+  "review_status": "analyst_reviewed",
+  "reviewed_by": "Fixture maintainer",
+  "reviewed_at": "2026-08-27T00:00:00Z",
+  "notes": "The source and rule screen do not establish training completion or compliance."
+}

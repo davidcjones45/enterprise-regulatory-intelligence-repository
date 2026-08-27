@@ -27,6 +27,7 @@ The reference implementation answers five core questions:
 - A local, read-only demonstration interface that shows source-to-evidence traceability.
 - Authoritative-source snapshots with SHA-256 integrity values, change detection, and review queues.
 - Vendor-neutral GRC import packages and CloudEvents-compatible integration events.
+- Applicability Rule v2 with strict generic predicates and nested Boolean expressions; missing facts remain reviewable unknowns rather than negative conclusions.
 
 ## Repository structure
 
@@ -104,6 +105,19 @@ The screening result is intentionally limited to `potentially_applies` or
 Reviewer dispositions are written to a local SQLite ledger (`demo-review.db`),
 which is ignored by Git. The local demonstration is not an authenticated
 production workflow.
+
+## Generic applicability screening
+
+Applicability rules can use the original `criteria` form or a nested v2 expression
+with strict equality, containment, existence, numeric comparisons, membership, and
+`all` / `any` / `not` groups. Missing facts remain explicit unknowns and types are
+not silently coerced. See [Applicability Rule v2](docs/applicability-rule-v2.md).
+
+The small synthetic HazMat and prescription/controlled-medication fixtures extend
+the generic catalog only through source-backed records and profile facts. They do
+not provide a comprehensive HMR, drug-supply-chain, DEA, pharmacy, state-law,
+transport, or dispensing analysis; do not determine applicability or compliance;
+and do not create authority to ship, distribute, dispense, or deliver.
 
 ## Source ingestion
 

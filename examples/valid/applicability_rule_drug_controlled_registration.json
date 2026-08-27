@@ -1,0 +1,21 @@
+{
+  "record_type": "applicability_rule",
+  "id": "RULE-DRUG-CONTROLLED-REG-001",
+  "obligation_id": "OBL-DRUG-CONTROLLED-REG-001",
+  "expression": {
+    "any": [
+      {"fact": "is_controlled_substance", "operator": "equals", "value": false},
+      {
+        "all": [
+          {"fact": "is_controlled_substance", "operator": "equals", "value": true},
+          {"fact": "dea_registration_active", "operator": "equals", "value": true}
+        ]
+      }
+    ]
+  },
+  "rationale": "Illustrative controlled-substance registration fact screen. It retains an unresolved result when a required registration fact is missing and does not determine authority, dispensing, or compliance.",
+  "review_status": "analyst_reviewed",
+  "reviewed_by": "Fixture maintainer",
+  "reviewed_at": "2026-08-27T00:00:00Z",
+  "notes": "A potentially_applies result is a review cue only. It is not a DEA, state-law, authority, dispensing, or compliance determination."
+}

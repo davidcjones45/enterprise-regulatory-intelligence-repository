@@ -1,0 +1,26 @@
+{
+  "record_type": "subject_profile",
+  "id": "SUBJ-HAZMAT-SYN-001",
+  "title": "Synthetic hazardous-material highway shipment",
+  "facts": {
+    "material_identifier": "SYNTHETIC-UN-EXAMPLE",
+    "hazard_class_division": "3",
+    "hazard_table": "table_2",
+    "packing_group": "II",
+    "aggregate_gross_weight_lb": 1001,
+    "package_type": "non_bulk",
+    "transport_mode": "highway",
+    "roles": ["hazmat_offeror", "motor_carrier"],
+    "placarding_exception_applies": false,
+    "training_current": true,
+    "phmsa_registration_evidence": null,
+    "hmsp_state": "undetermined",
+    "security_plan_review_required": true,
+    "origin_jurisdiction": "US-MS",
+    "destination_jurisdiction": "US-TN",
+    "shipment_date": "2026-08-27"
+  },
+  "profile_owner": "Synthetic fixture owner",
+  "updated_at": "2026-08-27T00:00:00Z",
+  "notes": "Synthetic facts only. Material classification, registration, HMSP, security-plan, packaging, and compliance determinations remain unresolved for qualified review."
+}

@@ -1,0 +1,30 @@
+{
+  "record_type": "subject_profile",
+  "id": "SUBJ-MEDICATION-SYN-001",
+  "title": "Synthetic prescription-drug distribution to a home-care setting",
+  "facts": {
+    "is_prescription_drug": true,
+    "is_controlled_substance": true,
+    "controlled_substance_schedule": "II",
+    "trading_partner_role": "wholesale_distributor",
+    "authorized_trading_partner": true,
+    "state_license_active": true,
+    "dea_registration_active": null,
+    "product_identifier_available": true,
+    "tracing_information_available": true,
+    "product_status": "not_assessed",
+    "transaction_type": "wholesale_distribution",
+    "inventory_transfer": true,
+    "patient_specific_fulfillment": false,
+    "prescription_present": false,
+    "prescriber_authorization_verified": false,
+    "patient_specific_dispensing_state": "not_assessed",
+    "delivery_destination_type": "home_care_provider",
+    "jurisdiction": "US-MS",
+    "applicability_as_of": "2026-08-27",
+    "small_dispenser_exemption_active": false
+  },
+  "profile_owner": "Synthetic fixture owner",
+  "updated_at": "2026-08-27T00:00:00Z",
+  "notes": "Synthetic non-patient profile. Delivery destination, inventory transfer, or transport completion does not prove lawful dispensing, authority, registration, or compliance."
+}

@@ -1,0 +1,21 @@
+{
+  "record_type": "applicability_rule",
+  "id": "RULE-HAZMAT-PLACARD-001",
+  "obligation_id": "OBL-HAZMAT-PLACARD-001",
+  "expression": {
+    "all": [
+      {"fact": "hazard_table", "operator": "equals", "value": "table_2"},
+      {"fact": "aggregate_gross_weight_lb", "operator": "greater_than_or_equal", "value": 1001},
+      {"any": [
+        {"fact": "roles", "operator": "contains", "value": "hazmat_offeror"},
+        {"fact": "roles", "operator": "contains", "value": "motor_carrier"}
+      ]},
+      {"not": {"fact": "placarding_exception_applies", "operator": "equals", "value": true}}
+    ]
+  },
+  "rationale": "Illustrative fact screen for a placarding review only; a qualified reviewer must determine classification, scope, exceptions, and applicability.",
+  "review_status": "analyst_reviewed",
+  "reviewed_by": "Fixture maintainer",
+  "reviewed_at": "2026-08-27T00:00:00Z",
+  "notes": "A potentially_applies result is not a legal conclusion, compliance determination, or shipment authorization."
+}

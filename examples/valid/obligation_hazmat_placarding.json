@@ -1,0 +1,20 @@
+{
+  "record_type": "obligation",
+  "id": "OBL-HAZMAT-PLACARD-001",
+  "source_id": "SRC-US-DOT-PHMSA-HMR-172",
+  "title": "Review Table 2 aggregate gross-weight placarding condition",
+  "normalized_text": "A qualified reviewer would determine whether the Table 2 aggregate gross-weight condition in 49 CFR 172.504(c) is met for the actual hazardous-material shipment and whether a placarding exception applies.",
+  "obligation_type": "mandatory_action",
+  "binding_status": "binding",
+  "citations": [{"locator_type": "section", "locator": "49 CFR 172.504(c)", "quoted_text": null, "notes": "The fixture uses the stated 454 kg (1,001 lb) aggregate gross-weight condition only as a screening fact; classification and exceptions require review."}],
+  "subjects": ["hazmat offeror", "motor carrier"],
+  "actions": ["determine the applicable placarding condition"],
+  "objects": ["Table 2 hazardous material shipment"],
+  "conditions": ["when applicable classification, weight, and exception facts are established"],
+  "exceptions": ["applicable exception or alternative requirement"],
+  "deadline_expression": "Before offering or transporting the shipment, subject to qualified review.",
+  "review_status": "analyst_reviewed",
+  "reviewed_by": "Fixture maintainer",
+  "reviewed_at": "2026-08-27T00:00:00Z",
+  "notes": "Normalized fixture record only; it does not determine compliance, shipment authorization, or placarding sufficiency."
+}

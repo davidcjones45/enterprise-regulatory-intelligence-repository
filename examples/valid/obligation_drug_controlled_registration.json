@@ -1,0 +1,20 @@
+{
+  "record_type": "obligation",
+  "id": "OBL-DRUG-CONTROLLED-REG-001",
+  "source_id": "SRC-US-DEA-REGISTRATION-1301",
+  "title": "Review controlled-substance registration facts before distribution or dispensing conclusions",
+  "normalized_text": "A qualified reviewer would evaluate relevant registration and authority facts under 21 CFR Part 1301 before treating a controlled-substance distribution or dispensing workflow as supported.",
+  "obligation_type": "other",
+  "binding_status": "binding",
+  "citations": [{"locator_type": "section", "locator": "21 CFR Part 1301", "quoted_text": null, "notes": "Part-level pinpoint intentionally avoids asserting an individual registrant determination."}],
+  "subjects": ["controlled-substance registrant", "distributor", "pharmacy"],
+  "actions": ["review registration and authority facts"],
+  "objects": ["controlled-substance transaction"],
+  "conditions": ["when controlled-substance status and relevant role facts are established"],
+  "exceptions": [],
+  "deadline_expression": null,
+  "review_status": "analyst_reviewed",
+  "reviewed_by": "Fixture maintainer",
+  "reviewed_at": "2026-08-27T00:00:00Z",
+  "notes": "Possession, transport, receipt, or delivery does not establish dispensing authority or legal compliance."
+}

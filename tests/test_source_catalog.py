@@ -11,8 +11,16 @@ CATALOG = ROOT / "catalog" / "sources"
 def test_catalog_records_validate():
     validator = RepositoryValidator(ROOT / "schemas")
     findings = validator.validate_paths([CATALOG])
-    assert len(findings) == 8
     assert all(finding.valid for finding in findings), findings
+    assert {Path(finding.file).stem for finding in findings} >= {
+        "us-dot-phmsa-hmr-172",
+        "us-dot-phmsa-registration-107",
+        "us-dot-fmcsa-hmsp-385",
+        "us-fda-dscsa-title-ii",
+        "us-fda-dscsa-small-dispensers-2026",
+        "us-dea-registration-1301",
+    }
+    assert len(findings) == 14
 
 
 def test_catalog_filters_by_jurisdiction_and_status():

@@ -1,0 +1,20 @@
+{
+  "record_type": "obligation",
+  "id": "OBL-DRUG-DSCSA-TRACE-001",
+  "source_id": "SRC-US-FDA-DSCSA-TITLE-II",
+  "title": "Review prescription-drug trading-partner and tracing conditions",
+  "normalized_text": "A qualified reviewer would determine which DSCSA product-tracing, verification, and authorized-trading-partner requirements apply to the identified prescription-drug distribution transaction.",
+  "obligation_type": "documentation",
+  "binding_status": "binding",
+  "citations": [{"locator_type": "section", "locator": "FD&C Act sections 581 and 582", "quoted_text": null, "notes": "Source fixture distinguishes supply-chain transactions from patient-specific dispensing."}],
+  "subjects": ["manufacturer", "repackager", "wholesale distributor", "dispenser", "third-party logistics provider"],
+  "actions": ["determine transaction scope and retain required tracing evidence when applicable"],
+  "objects": ["prescription drug distribution transaction"],
+  "conditions": ["when the transaction is within the statutory product and trading-partner definitions"],
+  "exceptions": ["statutory transaction and product exclusions"],
+  "deadline_expression": null,
+  "review_status": "analyst_reviewed",
+  "reviewed_by": "Fixture maintainer",
+  "reviewed_at": "2026-08-27T00:00:00Z",
+  "notes": "Not a conclusion that a particular transaction is covered, compliant, or authorized."
+}

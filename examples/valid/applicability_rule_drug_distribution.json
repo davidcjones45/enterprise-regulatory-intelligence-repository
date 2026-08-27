@@ -1,0 +1,19 @@
+{
+  "record_type": "applicability_rule",
+  "id": "RULE-DRUG-DSCSA-DISTRIBUTION-001",
+  "obligation_id": "OBL-DRUG-DSCSA-TRACE-001",
+  "expression": {
+    "all": [
+      {"fact": "is_prescription_drug", "operator": "equals", "value": true},
+      {"fact": "trading_partner_role", "operator": "in", "value": ["manufacturer", "repackager", "wholesale_distributor", "dispenser", "third_party_logistics_provider"]},
+      {"fact": "transaction_type", "operator": "in", "value": ["wholesale_distribution", "dispenser_receipt", "pharmacy_to_pharmacy_stock"]},
+      {"not": {"fact": "patient_specific_fulfillment", "operator": "equals", "value": true}},
+      {"fact": "applicability_as_of", "operator": "equals", "value": "2026-08-27"}
+    ]
+  },
+  "rationale": "Illustrative DSCSA distribution screen. It distinguishes an upstream transaction from patient-specific dispensing, while leaving statutory scope and exemptions to qualified review.",
+  "review_status": "analyst_reviewed",
+  "reviewed_by": "Fixture maintainer",
+  "reviewed_at": "2026-08-27T00:00:00Z",
+  "notes": "No transport, tracing, or delivery fact becomes evidence of lawful dispensing or regulatory compliance."
+}
