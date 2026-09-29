@@ -1,0 +1,15 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "rewrites": [
+    { "source": "/", "destination": "/api/index.py?route=root" },
+    { "source": "/api/demo", "destination": "/api/index.py?route=demo" },
+    { "source": "/api/scenarios", "destination": "/api/index.py?route=scenarios" },
+    { "source": "/api/reviews", "destination": "/api/index.py?route=reviews" },
+    {
+      "source": "/api/review-history",
+      "destination": "/api/index.py?route=review-history"
+    },
+    { "source": "/api/export", "destination": "/api/index.py?route=export" },
+    { "source": "/api/review", "destination": "/api/index.py?route=review" }
+  ]
+}
