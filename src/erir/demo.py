@@ -50,7 +50,7 @@ h1{font-size:clamp(2rem,5vw,3.6rem);line-height:1.04;margin:.3rem 0 1rem}h2{font
 <p class="footer">The repository separates source facts, normalized obligations, applicability reasoning, controls, and evidence so a reviewer can reconstruct each decision.</p>
 </main><script>
 const esc=v=>String(v??'—').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const humanize=v=>String(v??'').trim().replaceAll('_',' ').replace(/\b\w/g,c=>c.toUpperCase());
+const humanize=v=>String(v??'').trim().replaceAll('_',' ').replace(/\\b\\w/g,c=>c.toUpperCase());
 const status=(value,tone='neutral',symbol='○')=>`<span class="status ${tone}"><span aria-hidden="true">${symbol}</span>${esc(humanize(value))}</span>`;
 const recordId=record=>record?.id||record?.rule_id||record?.screening_id||'';
 const canonicalValue=value=>{
