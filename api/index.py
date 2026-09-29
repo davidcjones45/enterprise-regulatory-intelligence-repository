@@ -12,7 +12,7 @@ SRC = ROOT / "src"
 if str(SRC) not in sys.path:
     sys.path.insert(0, str(SRC))
 
-from erir.demo import INDEX_HTML, build_demo_scenarios  # noqa: E402
+from erir.demo import INDEX_HTML, build_demo_scenarios
 
 SCENARIO_PAYLOADS = {
     scenario["id"]: scenario["payload"] for scenario in build_demo_scenarios(ROOT)
