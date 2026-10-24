@@ -241,23 +241,23 @@ def create_server(repo_root: Path):
         except POCError as exc:
             raise ToolError(str(exc)) from exc
 
-    @server.tool(annotations=annotations)
-    def get_obligation_trace(record_id: str) -> dict:
+    @server.tool(annotations=annotations, structured_output=True)
+    def get_obligation_trace(record_id: str) -> dict[str, Any]:
         """Retrieve the illustrative obligation and its five-record trace. No legal determination."""
         return invoke("get_obligation_trace", record_id)
 
-    @server.tool(annotations=annotations)
-    def get_applicability_assessment(record_id: str) -> dict:
+    @server.tool(annotations=annotations, structured_output=True)
+    def get_applicability_assessment(record_id: str) -> dict[str, Any]:
         """Retrieve recorded applicability and context without changing approval or decision status."""
         return invoke("get_applicability_assessment", record_id)
 
-    @server.tool(annotations=annotations)
-    def get_control_evidence(record_id: str) -> dict:
+    @server.tool(annotations=annotations, structured_output=True)
+    def get_control_evidence(record_id: str) -> dict[str, Any]:
         """Retrieve a control and linked evidence metadata; never fetch or accept evidence documents."""
         return invoke("get_control_evidence", record_id)
 
-    @server.tool(annotations=annotations)
-    def get_source_status(record_id: str) -> dict:
+    @server.tool(annotations=annotations, structured_output=True)
+    def get_source_status(record_id: str) -> dict[str, Any]:
         """Retrieve recorded illustrative source status, not current law or live source verification."""
         return invoke("get_source_status", record_id)
 

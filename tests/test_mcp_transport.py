@@ -20,11 +20,20 @@ async def exercise(client):
     for tool in listed:
         assert tool.annotations.read_only_hint is True
         assert tool.annotations.open_world_hint is False
+        assert tool.output_schema is not None
     result = await client.call_tool("get_obligation_trace", {"record_id": "OBL-FTC-001"})
     assert result.is_error is False
     response = result.structured_content
     assert response["boundaries"]["write_capability"] is False
     assert len(response["records"]) == 5
+    for name, record_id in (
+        ("get_applicability_assessment", "APP-FTC-001"),
+        ("get_control_evidence", "CTL-CLAIMS-001"),
+        ("get_source_status", "SRC-FTC-2026-001"),
+    ):
+        other = await client.call_tool(name, {"record_id": record_id})
+        assert other.is_error is False
+        assert other.structured_content["records"] == response["records"]
     assert (await client.call_tool("approve_applicability", {"record_id": "APP-FTC-001"})).is_error
     assert (await client.call_tool("get_obligation_trace", {"record_id": "../../etc/passwd"})).is_error
     assert (await client.call_tool("get_obligation_trace", {"record_id": "OBL-MISSING"})).is_error
