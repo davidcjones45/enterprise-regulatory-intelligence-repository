@@ -1,0 +1,6 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "erir-readonly-poc",
+  "version": "0.1.0",
+  "description": "Local-only ERIR illustrative obligation and evidence traceability proof of concept. Not legal advice or a compliance determination."
+}

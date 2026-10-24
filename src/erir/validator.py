@@ -44,12 +44,15 @@ class RepositoryValidator:
             instance = load_json(path)
         except (OSError, json.JSONDecodeError) as exc:
             return ValidationFinding(str(path), False, None, (f"Unreadable JSON: {exc}",))
+        return self.validate_instance(instance, str(path))
 
+    def validate_instance(self, instance: object, label: str = "<memory>") -> ValidationFinding:
+        """Validate the exact parsed instance; no second filesystem read is required."""
         record_type = instance.get("record_type") if isinstance(instance, dict) else None
         schema_name = SCHEMA_BY_RECORD_TYPE.get(record_type)
         if not schema_name:
             return ValidationFinding(
-                str(path),
+                label,
                 False,
                 None,
                 (f"Unknown or missing record_type: {record_type!r}",),
@@ -66,7 +69,7 @@ class RepositoryValidator:
             f"{'.'.join(str(item) for item in error.path) or '<root>'}: {error.message}"
             for error in errors
         )
-        return ValidationFinding(str(path), not errors, schema_name, messages)
+        return ValidationFinding(label, not errors, schema_name, messages)
 
     def validate_paths(self, paths: Iterable[Path]) -> list[ValidationFinding]:
         findings: list[ValidationFinding] = []
