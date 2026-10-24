@@ -1,0 +1,10 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/mcp.schema.json",
+  "mcpServers": {
+    "erir-readonly": {
+      "type": "stdio",
+      "command": "erir-mcp-poc",
+      "args": []
+    }
+  }
+}
