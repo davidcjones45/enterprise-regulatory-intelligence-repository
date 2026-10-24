@@ -7,9 +7,9 @@ from pathlib import Path
 import pytest
 
 pytest.importorskip("mcp", reason="Install .[dev] or .[mcp] for real MCP transport tests")
-from mcp import Client, StdioServerParameters  # noqa: E402
+from mcp import Client, StdioServerParameters
 
-from erir.mcp_poc import TOOLS, create_server  # noqa: E402
+from erir.mcp_poc import TOOLS, create_server
 
 ROOT = Path(__file__).resolve().parents[1]
 

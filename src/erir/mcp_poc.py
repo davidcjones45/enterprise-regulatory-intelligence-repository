@@ -157,8 +157,8 @@ class ReadOnlyDemoService:
         items: list[dict] = []
         for record in self._records.values():
             rid, kind = record["id"], record["record_type"]
-            def add(code: str, field: str, message: str) -> None:
-                items.append({"code": code, "record_id": rid, "field": field, "message": message})
+            def add(code: str, field: str, message: str, record_id: str = rid) -> None:
+                items.append({"code": code, "record_id": record_id, "field": field, "message": message})
             if kind == "regulatory_source":
                 add("SOURCE_CURRENCY_UNVERIFIED", "last_verified_at",
                     "Stored metadata is returned unchanged; no authoritative source was fetched.")
